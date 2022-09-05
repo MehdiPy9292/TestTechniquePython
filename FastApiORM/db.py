@@ -26,6 +26,7 @@ class PersonneSchema(BaseModel):
     nom:str
     prenom:str
     date_naissance:str
+    age:str
 
     class Config:
         orm_mode = True

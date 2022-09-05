@@ -32,8 +32,21 @@ async def ajout_personne(personne : db.PersonneSchema):
 #get
 @app.get("/listPersonnes", response_model=list[db.PersonneSchema])
 async def list_personnes():
-    res = session.query(db.Personne).all()
+    print("mehdi")
+    requete = session.query(db.Personne).order_by(db.Personne.nom.desc()).all()
+    res = []
+    for row in requete:
+        my_dict = {}
+        my_dict['id'] = row.id
+        my_dict['nom'] = row.nom
+        my_dict['prenom'] = row.prenom
+        my_dict['date_naissance'] = row.date_naissance
+        my_dict['age'] = calculateAge(row.date_naissance)
+        res.append(my_dict)
+        # print(l)
+
     return res
+    return addTodic(res)
 
 
 
@@ -44,3 +57,12 @@ def calculateAge(birthDate):
     age = today.year - birthDate.year - ((today.month, today.day) < (birthDate.month, birthDate.day))
     print(age)
     return age
+
+
+d = [{'a': 1, 'b': 2}]
+def addTodic(d):
+    add = d
+    print(d)
+    add['age'] = 3
+    print(add)
+    return add
