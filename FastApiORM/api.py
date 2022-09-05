@@ -43,12 +43,8 @@ async def list_personnes():
         my_dict['date_naissance'] = row.date_naissance
         my_dict['age'] = calculateAge(row.date_naissance)
         res.append(my_dict)
-        # print(l)
 
     return res
-    return addTodic(res)
-
-
 
 #fun
 def calculateAge(birthDate):
@@ -57,12 +53,3 @@ def calculateAge(birthDate):
     age = today.year - birthDate.year - ((today.month, today.day) < (birthDate.month, birthDate.day))
     print(age)
     return age
-
-
-d = [{'a': 1, 'b': 2}]
-def addTodic(d):
-    add = d
-    print(d)
-    add['age'] = 3
-    print(add)
-    return add
